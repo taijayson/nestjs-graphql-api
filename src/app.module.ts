@@ -15,6 +15,7 @@ import { PriceModule } from './features/price/price.module';
       // transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
       installSubscriptionHandlers: true,
       playground: true,
+      introspection: true,
       buildSchemaOptions: {
         directives: [
           new GraphQLDirective({
