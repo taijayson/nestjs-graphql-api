@@ -23,7 +23,7 @@ type Query {
 }
 
 type Mutation {
-  addPrice(newRecipeData: NewPriceInput!): Price!
+  addPrice(newPriceData: NewPriceInput!): Price!
   removePrice(id: String!): Boolean!
 }
 

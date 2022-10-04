@@ -28,10 +28,10 @@ export class PriceResolver {
 
   @Mutation((returns) => Price)
   async addPrice(
-    @Args('newRecipeData') newRecipeData: NewPriceInput,
+    @Args('newPriceData') newRecipeData: NewPriceInput,
   ): Promise<Price> {
     const recipe = await this.priceService.create(newRecipeData);
-    pubSub.publish('recipeAdded', { recipeAdded: recipe });
+    pubSub.publish('priceAdded', { recipeAdded: recipe });
     return recipe;
   }
 
