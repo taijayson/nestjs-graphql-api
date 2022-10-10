@@ -15,7 +15,7 @@ import { /*getTypeOrmConfig, pgConfig*/ config } from './config/config';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      url: config.dbUrl,
+      url: process.env.DATABASE_URL || config.dbUrl,
       type: 'postgres',
       ssl: {
         rejectUnauthorized: false,

@@ -5,7 +5,7 @@ const env = cfg();
 
 export const config = {
   port: env.parsed.PORT,
-  dbUrl: env.parsed.DB_URL,
+  dbUrl: env.parsed.DATABASE_URL,
 };
 
 // export const pgConfig = {
