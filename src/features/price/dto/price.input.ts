@@ -14,5 +14,5 @@ export class NewPriceInput {
 
   @Field((type) => Int, { nullable: true })
   @IsOptional()
-  amount?: string[];
+  amount?: number;
 }

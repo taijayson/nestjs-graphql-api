@@ -1,15 +1,12 @@
 import { Module } from '@nestjs/common';
-
-import { PriceObj, PriceSchema } from './price.schema';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PriceEntity } from './price.entity';
 import { PriceResolver } from './price.resolver';
 import { PriceService } from './price.service';
-import { MongooseModule } from '@nestjs/mongoose';
 // import { DateScalar } from '../../common/scalars/date.scalar';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: PriceObj.name, schema: PriceSchema }]),
-  ],
+  imports: [TypeOrmModule.forFeature([PriceEntity])],
   providers: [PriceResolver, PriceService],
 })
 export class PriceModule {}

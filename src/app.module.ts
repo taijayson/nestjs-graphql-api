@@ -1,17 +1,29 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directive';
-import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
-import { configObject } from './config/config';
 
 import { PriceModule } from './features/price/price.module';
+import { /*getTypeOrmConfig, pgConfig*/ config } from './config/config';
+
+// const typeOrmConfig = getTypeOrmConfig();
+// console.log(typeOrmConfig);
 
 @Module({
   imports: [
-    MongooseModule.forRoot(configObject.mongoDb || process.env.MONGODB_URI),
+    TypeOrmModule.forRoot({
+      url: config.dbUrl,
+      type: 'postgres',
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      autoLoadEntities: true,
+      synchronize: true,
+      entities: ['dist/**/**/*.entity{.ts, .js}'],
+    }),
     PriceModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

@@ -1,33 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { PriceArgs } from './dto/price.args';
-// import { NewPriceInput } from './dto/price.input';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { PriceEntity } from './price.entity';
 import { Price } from './price.model';
-import { Model } from 'mongoose';
+import { PriceArgs } from './dto/price.args';
+import { NewPriceInput } from './dto/price.input';
 import { CreatePriceDto } from './dto/price.dto';
-import { PriceObj } from './price.schema';
 
 @Injectable()
 export class PriceService {
   constructor(
-    @InjectModel(PriceObj.name)
-    private readonly priceModel: Model<PriceObj>,
+    @InjectRepository(PriceEntity)
+    private readonly priceRepo: Repository<PriceEntity>,
   ) {}
 
-  async create(data: CreatePriceDto): Promise<PriceObj> {
-    const dataObj = {
-      ...data,
-      creationDate: new Date().toLocaleString(),
-    };
-    return await this.priceModel.create(dataObj);
+  async create(data: CreatePriceDto): Promise<PriceEntity> {
+    const price = new PriceEntity();
+    price.title = data.title;
+    price.description = data.description;
+    price.amount = data.amount;
+    return await this.priceRepo.create({});
   }
 
   async findOneById(id: string): Promise<Price> {
     return {} as any;
   }
 
-  async findAll(recipesArgs: PriceArgs): Promise<PriceObj[]> {
-    return this.priceModel.find().exec();
+  async findAll(recipesArgs: PriceArgs): Promise<PriceEntity[]> {
+    return this.priceRepo.find();
   }
 
   async remove(id: string): Promise<boolean> {

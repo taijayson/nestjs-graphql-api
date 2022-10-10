@@ -2,8 +2,8 @@ import { Directive, Field, ID, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType({ description: 'recipe' })
 export class Price {
-  // @Field((type) => ID)
-  // id: string;
+  @Field((type) => ID)
+  id: string;
 
   @Directive('@upper')
   title: string;
