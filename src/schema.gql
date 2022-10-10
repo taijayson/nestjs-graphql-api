@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+"""recipe"""
+type Price {
+  description: String
+  amount: Int
+  creationDate: String!
+  title: String!
+}
+
+type Query {
+  price(id: String!): Price!
+  prices(skip: Int = 0, take: Int = 25): [Price!]!
+}
+
+type Mutation {
+  addPrice(newPriceInput: NewPriceInput!): Price!
+  removePrice(id: String!): Boolean!
+}
+
+input NewPriceInput {
+  title: String!
+  description: String
+  amount: Int
+}
