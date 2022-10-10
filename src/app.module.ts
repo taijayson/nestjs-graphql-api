@@ -11,7 +11,10 @@ import { PriceModule } from './features/price/price.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(configObject.mongoDb),
+    MongooseModule.forRoot(
+      configObject.mongoDb ||
+        'mongodb+srv://taijayson:testpass1234@cluster1.k4kezt1.mongodb.net/testDB',
+    ),
     PriceModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -21,7 +24,7 @@ import { PriceModule } from './features/price/price.module';
       playground: true,
       introspection: true,
       buildSchemaOptions: {
-        dateScalarMode: 'timestamp',
+        // dateScalarMode: 'timestamp',
         directives: [
           new GraphQLDirective({
             name: 'upper',
