@@ -22,10 +22,6 @@ export class PriceService {
     return await this.priceModel.create(dataObj);
   }
 
-  findOne() {
-    return 100;
-  }
-
   async findOneById(id: string): Promise<Price> {
     return {} as any;
   }
