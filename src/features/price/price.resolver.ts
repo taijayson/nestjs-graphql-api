@@ -14,11 +14,13 @@ export class PriceResolver {
 
   @Query((returns) => Price)
   async price(@Args('id') id: string) {
-    const recipe = await this.priceService.findOneById(id);
-    if (!recipe) {
+    console.log(typeof ('blabla' + 100));
+
+    const price = await this.priceService.findOneById(id);
+    if (!price) {
       throw new NotFoundException(id);
     }
-    return recipe;
+    return price;
   }
 
   @Query((returns) => [Price])
@@ -28,11 +30,11 @@ export class PriceResolver {
 
   @Mutation((returns) => Price)
   async addPrice(
-    @Args('newPriceData') newRecipeData: NewPriceInput,
+    @Args('newPriceInput') newPriceInput: NewPriceInput,
   ): Promise<Price> {
-    const recipe = await this.priceService.create(newRecipeData);
-    pubSub.publish('priceAdded', { recipeAdded: recipe });
-    return recipe;
+    const price = await this.priceService.create(newPriceInput);
+    pubSub.publish('priceAdded', { priceAdded: price });
+    return price;
   }
 
   @Mutation((returns) => Boolean)
