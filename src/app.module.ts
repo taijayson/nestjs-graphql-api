@@ -11,10 +11,7 @@ import { PriceModule } from './features/price/price.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      configObject.mongoDb ||
-        'mongodb+srv://taijayson:testpass1234@cluster1.k4kezt1.mongodb.net/testDB',
-    ),
+    MongooseModule.forRoot(configObject.mongoDb || process.env.MONGODB_URI),
     PriceModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
