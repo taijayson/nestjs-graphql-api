@@ -9,7 +9,6 @@ type Price {
   id: ID!
   description: String
   amount: Int
-  creationDate: String!
   title: String!
 }
 

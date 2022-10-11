@@ -19,7 +19,7 @@ export class PriceService {
     price.title = data.title;
     price.description = data.description;
     price.amount = data.amount;
-    return await this.priceRepo.create({});
+    return await this.priceRepo.create(price);
   }
 
   async findOneById(id: string): Promise<Price> {

@@ -13,7 +13,4 @@ export class Price {
 
   @Field((type) => Int, { nullable: true })
   amount?: number;
-
-  @Field()
-  creationDate: string;
 }

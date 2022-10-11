@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directive';
 import { join } from 'path';
 
 import { PriceModule } from './features/price/price.module';
+import { PriceEntity } from './features/price/price.entity';
+
 import { /*getTypeOrmConfig, pgConfig*/ config } from './config/config';
 
 // const typeOrmConfig = getTypeOrmConfig();
+// console.log(process.cwd());
+// console.log(__dirname + '/../**/*.entity{.ts, .js}');
 
 @Module({
   imports: [
@@ -21,8 +25,8 @@ import { /*getTypeOrmConfig, pgConfig*/ config } from './config/config';
       },
       autoLoadEntities: true,
       synchronize: true,
-      entities: ['dist/**/**/*.entity{.ts, .js}'],
-    }),
+      entities: ['dist/**/*.entity.ts'],
+    } as TypeOrmModuleOptions),
     PriceModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

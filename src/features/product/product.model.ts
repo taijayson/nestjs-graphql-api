@@ -33,7 +33,4 @@ export class Product {
 
   @Field({ nullable: true })
   brand?: string;
-
-  @Field()
-  creationDate: string;
 }

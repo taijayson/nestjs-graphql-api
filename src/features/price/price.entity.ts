@@ -1,4 +1,5 @@
 import {
+  Entity,
   PrimaryGeneratedColumn,
   Column,
   UpdateDateColumn,
@@ -6,6 +7,7 @@ import {
 } from 'typeorm';
 import { DateScalar } from '../../common/scalars/date.scalar';
 
+@Entity()
 export class PriceEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -16,12 +18,6 @@ export class PriceEntity {
   @Column({ type: 'varchar', length: 300, nullable: true })
   description?: string;
 
-  @Column({ type: 'int' })
-  amount: number;
-
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  creationDate: string;
-
-  @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  lastChangedDateTime: Date;
+  @Column({ type: 'int', nullable: true })
+  amount?: number;
 }
