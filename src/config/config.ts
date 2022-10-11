@@ -4,8 +4,8 @@ import { config as cfg } from 'dotenv';
 const env = cfg();
 
 export const config = {
-  port: env.parsed.PORT,
-  dbUrl: env.parsed.DATABASE_URL,
+  port: process.env.PORT || env.parsed.PORT,
+  dbUrl: process.env.DATABASE_URL || env.parsed.DATABASE_URL,
 };
 
 // export const pgConfig = {
