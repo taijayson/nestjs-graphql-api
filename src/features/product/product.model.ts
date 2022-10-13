@@ -1,12 +1,7 @@
 import { Directive, Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import AttributeSet from '../../utils/attribute-set';
 import { Price } from '../price/price.model';
-
-export enum Category {
-  all = 'all',
-  clothes = 'clothes',
-  tech = 'tech',
-}
+import { Category } from '../../types/category';
 
 @ObjectType({ description: 'Product' })
 export class Product {

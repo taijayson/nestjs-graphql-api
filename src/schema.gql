@@ -4,7 +4,7 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""recipe"""
+"""price"""
 type Price {
   id: ID!
   description: String
@@ -12,18 +12,50 @@ type Price {
   title: String!
 }
 
+"""recipe"""
+type Attribute {
+  id: ID!
+  value: String!
+}
+
+"""category"""
+type Category {
+  id: ID!
+  title: String!
+  description: String
+}
+
 type Query {
+  category(id: String!): Category!
+  categories(skip: Int = 0, take: Int = 25): [Category!]!
   price(id: String!): Price!
   prices(skip: Int = 0, take: Int = 25): [Price!]!
+  attribute(id: String!): Attribute!
+  attributes(skip: Int = 0, take: Int = 25): [Attribute!]!
 }
 
 type Mutation {
+  addCategory(newCategoryInput: NewCategoryInput!): Category!
+  removeCategory(id: String!): Boolean!
   addPrice(newPriceInput: NewPriceInput!): Price!
   removePrice(id: String!): Boolean!
+  addAttribute(newAttributeInput: NewAttributeInput!): Attribute!
+  removeAttribute(id: String!): Boolean!
+}
+
+input NewCategoryInput {
+  title: String!
+  description: String
+  amount: Int
 }
 
 input NewPriceInput {
   title: String!
   description: String
   amount: Int
+}
+
+input NewAttributeInput {
+  title: String!
+  value: String!
 }

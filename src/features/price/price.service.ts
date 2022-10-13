@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PriceEntity } from './price.entity';
-import { Price } from './price.model';
 import { PriceArgs } from './dto/price.args';
-import { NewPriceInput } from './dto/price.input';
 import { CreatePriceDto } from './dto/price.dto';
+// import { Price } from './price.model';
+// import { NewPriceInput } from './dto/price.input';
 
 @Injectable()
 export class PriceService {
@@ -19,11 +19,11 @@ export class PriceService {
     price.title = data.title;
     price.description = data.description;
     price.amount = data.amount;
-    return await this.priceRepo.create(price);
+    return await this.priceRepo.save(price);
   }
 
-  async findOneById(id: string): Promise<Price> {
-    return {} as any;
+  async findOneById(id: string): Promise<PriceEntity> {
+    return this.priceRepo.findOneByOrFail({ id });
   }
 
   async findAll(recipesArgs: PriceArgs): Promise<PriceEntity[]> {

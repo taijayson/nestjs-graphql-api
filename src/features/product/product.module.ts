@@ -6,4 +6,4 @@ import { ProductResolver } from './product.resolver';
 @Module({
   providers: [ProductResolver, ProductService],
 })
-export class PriceModule {}
+export class ProductModule {}

@@ -14,8 +14,6 @@ export class PriceResolver {
 
   @Query((returns) => Price)
   async price(@Args('id') id: string) {
-    console.log(typeof ('blabla' + 100));
-
     const price = await this.priceService.findOneById(id);
     if (!price) {
       throw new NotFoundException(id);
@@ -24,8 +22,8 @@ export class PriceResolver {
   }
 
   @Query((returns) => [Price])
-  prices(@Args() recipesArgs: PriceArgs): Promise<Price[]> {
-    return this.priceService.findAll(recipesArgs);
+  prices(@Args() priceArgs: PriceArgs): Promise<Price[]> {
+    return this.priceService.findAll(priceArgs);
   }
 
   @Mutation((returns) => Price)
