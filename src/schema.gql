@@ -18,16 +18,28 @@ type Attribute {
   value: String!
 }
 
+"""Product"""
+type Product {
+  id: ID!
+  prices: [Price!]
+  description: String
+  gallery: [String!]
+  inStock: Boolean
+  brand: String
+}
+
 """category"""
 type Category {
   id: ID!
-  title: String!
-  description: String
+  name: String!
+  products: [Product!]!
 }
 
 type Query {
   category(id: String!): Category!
   categories(skip: Int = 0, take: Int = 25): [Category!]!
+  product(id: String!): Product!
+  products(skip: Int = 0, take: Int = 25): [Product!]!
   price(id: String!): Price!
   prices(skip: Int = 0, take: Int = 25): [Price!]!
   attribute(id: String!): Attribute!
@@ -37,16 +49,21 @@ type Query {
 type Mutation {
   addCategory(newCategoryInput: NewCategoryInput!): Category!
   removeCategory(id: String!): Boolean!
-  addPrice(newPriceInput: NewPriceInput!): Price!
+  addProduct(newProductData: NewProductInput!): Product!
   removePrice(id: String!): Boolean!
+  addPrice(newPriceInput: NewPriceInput!): Price!
   addAttribute(newAttributeInput: NewAttributeInput!): Attribute!
   removeAttribute(id: String!): Boolean!
 }
 
 input NewCategoryInput {
-  title: String!
+  name: String!
+}
+
+input NewProductInput {
   description: String
-  amount: Int
+  inStock: Boolean!
+  brand: String
 }
 
 input NewPriceInput {

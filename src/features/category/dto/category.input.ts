@@ -5,14 +5,5 @@ import { IsOptional, Length, MaxLength } from 'class-validator';
 export class NewCategoryInput {
   @Field()
   @MaxLength(50)
-  title: string;
-
-  @Field({ nullable: true })
-  @IsOptional()
-  @Length(30, 255)
-  description?: string;
-
-  @Field((type) => Int, { nullable: true })
-  @IsOptional()
-  amount?: number;
+  name: string;
 }

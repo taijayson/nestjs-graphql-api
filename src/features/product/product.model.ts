@@ -11,8 +11,8 @@ export class Product {
   @Field((type) => [Price], { nullable: true })
   prices?: Price[];
 
-  @Field((type) => Category, { nullable: true })
-  category?: Category;
+  // @Field((type) => Category, { nullable: true })
+  // category?: Category;
 
   @Field({ nullable: true })
   description?: string;
@@ -20,11 +20,11 @@ export class Product {
   @Field({ nullable: true })
   gallery?: string[];
 
-  @Field((type) => [AttributeSet], { nullable: true })
-  attributes?: AttributeSet[];
+  // @Field((type) => [AttributeSet], { nullable: true })
+  // attributes?: AttributeSet[];
 
-  @Field()
-  inStock: boolean;
+  @Field({ nullable: true })
+  inStock?: boolean;
 
   @Field({ nullable: true })
   brand?: string;

@@ -49,7 +49,7 @@ import { ProductModule } from './features/product/product.module';
       },
     }),
     CategoryModule,
-    // ProductModule,
+    ProductModule,
     PriceModule,
     AttributeModule,
   ],

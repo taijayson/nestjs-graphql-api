@@ -4,8 +4,10 @@ import {
   Column,
   UpdateDateColumn,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 import { DateScalar } from '../../common/scalars/date.scalar';
+import { ProductEntity } from '../product/product.entity';
 
 @Entity()
 export class PriceEntity {
@@ -20,4 +22,7 @@ export class PriceEntity {
 
   @Column({ type: 'int', nullable: true })
   amount?: number;
+
+  @ManyToOne(() => ProductEntity, (product) => product.prices)
+  product: ProductEntity;
 }

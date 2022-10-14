@@ -1,4 +1,5 @@
 import { Directive, Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Product } from '../product/product.model';
 
 @ObjectType({ description: 'category' })
 export class Category {
@@ -6,8 +7,8 @@ export class Category {
   id: string;
 
   @Field()
-  title: string;
+  name: string;
 
-  @Field({ nullable: true })
-  description?: string;
+  @Field((type) => [Product])
+  products: Product[];
 }

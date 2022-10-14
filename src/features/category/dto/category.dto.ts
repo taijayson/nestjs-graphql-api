@@ -1,4 +1,3 @@
 export class CreateCategoryDto {
-  readonly title: string;
-  readonly description?: string;
+  readonly name: string;
 }
