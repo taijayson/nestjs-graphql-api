@@ -9,7 +9,7 @@ type Price {
   id: ID!
   description: String
   amount: Int
-  title: String!
+  title: String
 }
 
 """recipe"""

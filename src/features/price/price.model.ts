@@ -6,7 +6,7 @@ export class Price {
   id: string;
 
   @Directive('@upper')
-  title: string;
+  title?: string;
 
   @Field({ nullable: true })
   description?: string;
